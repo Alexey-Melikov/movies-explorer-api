@@ -36,6 +36,9 @@ module.exports.updateUser = (req, res, next) => {
     .orFail()
     .then((user) => res.send(user))
     .catch((err) => {
+      if (err.code === 11000) {
+        return next(new ConflictError('user with this email is already registered.'));
+      }
       if (err instanceof mongoose.Error.ValidationError) {
         return next(new IncorrectError('Incorrect data was passed.'));
       }

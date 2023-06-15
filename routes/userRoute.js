@@ -7,10 +7,9 @@ const {
 
 const {
   updateUserJoi,
-  // getUserJoi,
 } = require('../middlewares/joi');
 
-userRouter.get('/me', getUser); // NEED JOI?
+userRouter.get('/me', getUser);
 userRouter.patch('/me', updateUserJoi, updateUser);
 
 module.exports = userRouter;
